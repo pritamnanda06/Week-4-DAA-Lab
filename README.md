@@ -124,3 +124,34 @@ allowed, you'd need a tie-breaking rule — typically process all entry
 events at a given time before exit events at that same time, or vice
 versa, depending on whether the boundary instant should count as
 overlapping.)
+
+----------------------------------------------------------------------------------------------------------------------
+
+
+For Q5
+------
+
+### Algorithm
+1. Sort the n intervals by their start value x_i (ascending) — O(n log n).
+2. Initialize the result list as empty, and set the "current" interval to
+   the first interval in the sorted list.
+3. Scan through the remaining sorted intervals one by one:
+   - If the next interval's start is less than or equal to the current
+     interval's end (i.e., they overlap or touch), merge them by extending
+     the current interval's end to the maximum of the two ends.
+   - Otherwise (no overlap), the current interval is finalized — add it to
+     the result list, and set the next interval as the new current interval.
+4. After the scan, add the final current interval to the result list.
+5. Return the result list.
+
+### Complexity
+- Sorting: O(n log n)
+- Single linear scan through the sorted intervals: O(n)
+- Total: O(n log n)
+
+### Why this is correct
+After sorting by start point, if interval j comes after interval i and does
+not overlap interval i's current merged range, then no interval after j can
+overlap i either — because all later intervals have an even larger start
+value. This guarantees a single pass over the sorted list is enough to find
+all merges; no interval needs to be revisited.
