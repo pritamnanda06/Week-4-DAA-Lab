@@ -185,7 +185,7 @@ For Q6
 - Total: O(n log n)
 
 ### Why the tie-breaking rule matters here
-Unlike Q4, this problem does not assume distinct endpoints — two
+This problem does not assume distinct endpoints — two
 intervals can legitimately share an endpoint value (e.g., one interval
 ends at 40 and another begins at 40). Since an endpoint counts as part of
 its interval, both must be counted as covering that shared point. This is
