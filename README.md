@@ -75,7 +75,8 @@ This nesting continues down to the $(k-1)^{th}$ loop picking an element at index
 
 Calculate the Complement: Inside the innermost loop, calculate the sum of the currently selected $k-1$ elements. Subtract this partial sum from the target $T$  to find the exact value needed for the $k^{th}$ element (the complement). 
 
-                            $Complement = T - (S[i_1] + S[i_2] + \dots + S[i_{k-1}])$
+                          $Complement = T - (S[i_1] + S[i_2] + \dots + S[i_{k-1}])$
+                          ---------------------------------------------------------
 
 Binary Search for the Last Element: Perform a Binary Search strictly on the remaining, unselected portion of the sorted array (from index $i_{k-1} + 1$ to $n - 1$) to look for the calculated complement.
 
