@@ -24,3 +24,36 @@ Time Complexity: $O(n)$ (Frequency counting, cumulative sums, and right-to-left 
 Space Complexity: $O(n)$ (Requires an auxiliary output array of size $n$ and a fixed-size count array of size 3).
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+For Q2
+------
+
+Step-by-Step Algorithm
+
+Sort One Set: Choose one of the sets, for example, $S_2$, and sort it in ascending order using an efficient sorting algorithm like Merge Sort or Heap Sort.
+
+Iterate Through the Other Set: Loop through each element $a$ in the unsorted set $S_1$.
+
+Calculate the Complement: For each element $a$ in $S_1$, calculate its required complement $b$ such that $b = x - a$.
+
+Binary Search: Use a Binary Search algorithm to look for the complement $b$ within the sorted set $S_2$.
+
+Evaluate Results:If the Binary Search finds $b$ in $S_2$, return True immediately (a valid pair exists).
+
+If the loop finishes checking all elements in $S_1$ without the Binary Search finding a single complement, return False (no such pair exists).
+
+Complexity Analysis
+
+Time Complexity:
+
+Sorting $S_2$ takes $O(n \log n)$ time.Iterating through $S_1$ takes $n$ steps. Inside the loop, the Binary Search on $S_2$ takes $O(\log n)$ time.This combined searching phase takes $O(n \log n)$ time.
+
+Total Time Complexity: $O(n \log n) + O(n \log n) = O(n \log n)$, which strictly satisfies the problem's requirements.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Space Complexity:$O(1)$ if an in-place sorting algorithm (like Heap Sort) is used.
+
+$O(n)$ if an out-of-place algorithm (like Merge Sort) is used.
