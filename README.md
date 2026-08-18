@@ -155,3 +155,39 @@ not overlap interval i's current merged range, then no interval after j can
 overlap i either — because all later intervals have an even larger start
 value. This guarantees a single pass over the sorted list is enough to find
 all merges; no interval needs to be revisited.
+
+------------------------------------------------------------------------------------------
+
+For Q6
+------
+
+### Algorithm
+1. Build an array of 2n events: for each interval i, create a "start"
+   event at l_i and an "end" event at r_i.
+2. Sort the events by their coordinate value — O(n log n).
+   - If a start event and an end event share the same coordinate, process
+     the start event first, since an endpoint counts as being inside its
+     own interval (so at that shared point, the newly starting interval
+     should already be counted, and the ending interval is still counted
+     too).
+3. Sweep through the sorted events left to right, maintaining a counter:
+   - on a start event, increment the counter
+   - on an end event, decrement the counter — but only after checking it
+     against the maximum, since the endpoint itself is still "covered"
+     by that interval
+4. Track the maximum counter value seen and the coordinate at which it
+   occurred.
+5. Return that coordinate as the point p (along with the maximum count).
+
+### Complexity
+- Sorting: O(n log n)
+- Single linear sweep: O(n)
+- Total: O(n log n)
+
+### Why the tie-breaking rule matters here
+Unlike Q4, this problem does not assume distinct endpoints — two
+intervals can legitimately share an endpoint value (e.g., one interval
+ends at 40 and another begins at 40). Since an endpoint counts as part of
+its interval, both must be counted as covering that shared point. This is
+why start events are ordered before end events when coordinates are
+equal, ensuring the count at a shared point reflects both intervals.
