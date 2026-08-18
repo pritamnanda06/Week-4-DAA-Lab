@@ -1,5 +1,5 @@
 For Q1
-------
+-------
 
 Core Strategy: Stable Counting Sort
 
