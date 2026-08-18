@@ -51,9 +51,50 @@ Sorting $S_2$ takes $O(n \log n)$ time.Iterating through $S_1$ takes $n$ steps. 
 
 Total Time Complexity: $O(n \log n) + O(n \log n) = O(n \log n)$, which strictly satisfies the problem's requirements.
 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
 Space Complexity:$O(1)$ if an in-place sorting algorithm (like Heap Sort) is used.
 
 $O(n)$ if an out-of-place algorithm (like Merge Sort) is used.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+For Q3
+------
+
+Step-by-Step Algorithm
+
+Sort the Set: Sort the set $S$ of $n$ integers in ascending order using an efficient algorithm like Merge Sort or Heap Sort.
+
+Iterate to Fix $k-1$ Elements: Use $k-1$ nested loops to systematically select the first $k-1$ elements to test.
+
+The outermost loop picks the first element at index $i_1$.
+
+The second loop picks the second element at index $i_2$ (where $i_2 > i_1$).
+
+This nesting continues down to the $(k-1)^{th}$ loop picking an element at index $i_{k-1}$.
+
+Calculate the Complement: Inside the innermost loop, calculate the sum of the currently selected $k-1$ elements. Subtract this partial sum from the target $T$  to find the exact value needed for the $k^{th}$ element (the complement). 
+
+                            $Complement = T - (S[i_1] + S[i_2] + \dots + S[i_{k-1}])$
+
+Binary Search for the Last Element: Perform a Binary Search strictly on the remaining, unselected portion of the sorted array (from index $i_{k-1} + 1$ to $n - 1$) to look for the calculated complement.
+
+Evaluate Results:If the Binary Search finds the complement, a valid set of $k$ integers exists; return True immediately.
+
+If all nested loops complete their iterations without the Binary Search finding a complement, return False.
+
+Complexity Analysis
+
+Time Complexity: * Sorting the array $S$ initially takes $O(n \log n)$ time.
+
+The $k-1$ nested loops will execute $O(n^{k-1})$ times in the worst-case scenario.Inside the innermost loop, the Binary Search takes $O(\log n)$ time.
+
+Multiplying the nested loops by the search time gives $O(n^{k-1} \log n)$ for the searching phase.Total Time Complexity: $O(n \log n) + O(n^{k-1} \log n) = O(n^{k-1} \log n)$, strictly satisfying the problem's requirements. 
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+For Q4
+------
+
+
