@@ -101,69 +101,26 @@ For Q4
 ------
 
 
-Algorithm
-Build an array of 
-2
-𝑛
-2n events: for each person 
-𝑖
-i, create an entry event at 
-𝑎
-𝑖
-a
-i
-	​
+### Algorithm
+1. Build an array of 2n events: for each person i, create an entry event
+   at a_i and an exit event at b_i.
+2. Sort the events by time — O(n log n).
+3. Sweep through the sorted events left to right, maintaining a counter:
+   - on an entry event, increment the counter
+   - on an exit event, decrement the counter
+4. Track the maximum counter value seen and the time at which it occurred.
+5. Return that time (and the max count) as the answer.
 
- and an exit event at 
-𝑏
-𝑖
-b
-i
-	​
+### Complexity
+- Sorting: O(n log n)
+- Single linear sweep: O(n)
+- Total: O(n log n)
 
-.
-Sort the events by time — 
-𝑂
-(
-𝑛
-log
-⁡
-𝑛
-)
-O(nlogn).
-Sweep through the sorted events left to right, maintaining a counter:
-on an entry event, increment the counter
-on an exit event, decrement the counter
-Track the maximum counter value seen and the time at which it occurred.
-Return that time (and the max count) as the answer.
-Complexity
-Sorting: 
-𝑂
-(
-𝑛
-log
-⁡
-𝑛
-)
-O(nlogn)
-Single linear sweep: 
-𝑂
-(
-𝑛
-)
-O(n)
-Total: 
-𝑂
-(
-𝑛
-log
-⁡
-𝑛
-)
-O(nlogn)
-Note on the "no ties" assumption
-
-Since all 
-2
-𝑛
-2n entry/exit times are distinct, there's no ambiguity about which event "happens first" at the same instant — every event has a strict, well-defined order, so the sweep is unambiguous. (If ties were allowed, you'd need a tie-breaking rule — typically process all entry events at a given time before exit events at that same time, or vice versa, depending on whether the boundary instant should count as overlapping.)
+### Note on the "no ties" assumption
+Since all 2n entry/exit times are distinct, there's no ambiguity about
+which event "happens first" at the same instant — every event has a
+strict, well-defined order, so the sweep is unambiguous. (If ties were
+allowed, you'd need a tie-breaking rule — typically process all entry
+events at a given time before exit events at that same time, or vice
+versa, depending on whether the boundary instant should count as
+overlapping.)
